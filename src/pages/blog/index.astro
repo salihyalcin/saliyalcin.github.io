@@ -1,0 +1,128 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+const posts = await getCollection('blog');
+const sortedPosts = posts.sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+
+<Layout title="Blog">
+  <div class="blog">
+    <h1>Blog</h1>
+    <div class="post-grid">
+      {sortedPosts.map(post => {
+        const formattedDate = new Date(post.data.pubDate).toLocaleDateString('en-US', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric'
+        });
+        
+        return (
+          <article class="post-card">
+            {post.data.image && (
+              <img src={post.data.image} alt={post.data.title} />
+            )}
+            <div class="content">
+              <span class="date">{formattedDate}</span>
+              <h2>{post.data.title}</h2>
+              <p>{post.data.description}</p>
+              <div class="tags">
+                {post.data.tags.map(tag => (
+                  <span class="tag">#{tag}</span>
+                ))}
+              </div>
+              <a href={`/blog/${post.slug}`} class="read-more">
+                Read More →
+              </a>
+            </div>
+          </article>
+        );
+      })}
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .blog {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .post-grid {
+    display: grid;
+    gap: 2rem;
+  }
+  
+  .post-card {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(var(--accent-dark), 0.1);
+    transition: transform 0.2s;
+  }
+  
+  .post-card:hover {
+    transform: translateY(-4px);
+  }
+  
+  .post-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  .content {
+    padding: 1.5rem;
+  }
+  
+  .date {
+    color: #666;
+    font-size: 0.9rem;
+  }
+  
+  h2 {
+    margin: 0.5rem 0;
+    font-size: 1.5rem;
+    color: rgb(var(--accent));
+  }
+  
+  p {
+    margin: 1rem 0;
+    color: #444;
+    line-height: 1.6;
+  }
+  
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1rem 0;
+  }
+  
+  .tag {
+    background: rgb(var(--accent-light));
+    color: rgb(var(--accent-dark));
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-size: 0.9rem;
+  }
+  
+  .read-more {
+    display: inline-block;
+    color: rgb(var(--accent));
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+  
+  .read-more:hover {
+    color: rgb(var(--accent-dark));
+  }
+</style>
