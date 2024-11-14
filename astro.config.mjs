@@ -1,6 +1,6 @@
 import { defineConfig } from 'astro/config';
 
-//Update
+//Update the code
 export default defineConfig({
   site: 'https://salihyalcin.github.io',
   base: '/saliyalcin.github.io',
