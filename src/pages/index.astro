@@ -1,0 +1,193 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const posts = [
+	{
+		title: 'Getting Started with Web Development',
+		excerpt: 'Learn the basics of web development and start your journey as a developer.',
+		date: 'April 20, 2024',
+		slug: 'getting-started-web-dev'
+	},
+	{
+		title: 'Understanding React Hooks',
+		excerpt: 'A deep dive into React Hooks and how they can improve your components.',
+		date: 'April 18, 2024',
+		slug: 'understanding-react-hooks'
+	}
+];
+---
+
+<Layout title="Welcome to My Portfolio">
+	<section class="hero">
+		<h1>Hi, I'm <span class="text-gradient">Your Name</span></h1>
+		<p class="subtitle">Full Stack Developer & Technical Writer</p>
+	</section>
+
+	<section class="featured">
+		<h2>Featured Projects</h2>
+		<div class="grid">
+			<a href="/projects/project-1" class="card project-card">
+				<img src="https://via.placeholder.com/600x300" alt="Project 1" />
+				<div class="card-content">
+					<h3>Project 1</h3>
+					<p>A brief description of your first featured project</p>
+					<div class="tags">
+						<span>React</span>
+						<span>Node.js</span>
+					</div>
+				</div>
+			</a>
+			<a href="/projects/project-2" class="card project-card">
+				<img src="https://via.placeholder.com/600x300" alt="Project 2" />
+				<div class="card-content">
+					<h3>Project 2</h3>
+					<p>A brief description of your second featured project</p>
+					<div class="tags">
+						<span>Vue.js</span>
+						<span>Firebase</span>
+					</div>
+				</div>
+			</a>
+		</div>
+	</section>
+
+	<section class="latest-posts">
+		<h2>Latest Blog Posts</h2>
+		<div class="grid">
+			{posts.map(post => (
+				<a href={`/blog/${post.slug}`} class="card blog-card">
+					<div class="card-content">
+						<span class="date">{post.date}</span>
+						<h3>{post.title}</h3>
+						<p>{post.excerpt}</p>
+						<span class="read-more">Read More →</span>
+					</div>
+				</a>
+			))}
+		</div>
+		<div class="view-all">
+			<a href="/blog" class="view-all-link">View All Posts →</a>
+		</div>
+	</section>
+</Layout>
+
+<style>
+	.hero {
+		text-align: center;
+		padding: 4rem 0;
+	}
+	h1 {
+		font-size: 3.5rem;
+		font-weight: 700;
+		margin: 0;
+	}
+	.subtitle {
+		font-size: 1.5rem;
+		color: #666;
+		margin-top: 1rem;
+	}
+	.text-gradient {
+		background-image: var(--accent-gradient);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-size: 400%;
+		background-position: 0%;
+	}
+	section {
+		margin: 4rem 0;
+	}
+	h2 {
+		font-size: 2rem;
+		margin-bottom: 2rem;
+		color: rgb(var(--accent));
+	}
+	.grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 2rem;
+	}
+	@media (max-width: 768px) {
+		.grid {
+			grid-template-columns: 1fr;
+		}
+	}
+	.card {
+		background: white;
+		border-radius: 8px;
+		overflow: hidden;
+		box-shadow: 0 2px 8px rgba(var(--accent-dark), 0.1);
+		text-decoration: none;
+		color: inherit;
+		transition: transform 0.2s;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+	}
+	.card:hover {
+		transform: translateY(-4px);
+	}
+	.card h3 {
+		margin: 0;
+		font-size: 1.5rem;
+		color: rgb(var(--accent));
+	}
+	.card p {
+		margin: 0.5rem 0;
+		color: #666;
+		line-height: 1.6;
+	}
+	.card-content {
+		padding: 1.5rem;
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+	}
+	.project-card img {
+		width: 100%;
+		height: 200px;
+		object-fit: cover;
+	}
+	.tags {
+		display: flex;
+		gap: 0.5rem;
+		margin-top: auto;
+		padding-top: 1rem;
+	}
+	.tags span {
+		background: rgb(var(--accent-light));
+		color: rgb(var(--accent-dark));
+		padding: 0.25rem 0.75rem;
+		border-radius: 15px;
+		font-size: 0.9rem;
+	}
+	.date {
+		color: #666;
+		font-size: 0.9rem;
+		margin-bottom: 0.5rem;
+		display: block;
+	}
+	.read-more {
+		color: rgb(var(--accent));
+		margin-top: auto;
+		padding-top: 1rem;
+		font-weight: 500;
+	}
+	.blog-card .card-content {
+		height: 100%;
+	}
+	.view-all {
+		text-align: center;
+		margin-top: 2rem;
+	}
+	.view-all-link {
+		display: inline-block;
+		color: rgb(var(--accent));
+		text-decoration: none;
+		font-weight: 500;
+		font-size: 1.1rem;
+		transition: color 0.2s;
+	}
+	.view-all-link:hover {
+		color: rgb(var(--accent-dark));
+	}
+</style>

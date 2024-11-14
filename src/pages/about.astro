@@ -1,0 +1,94 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="About Me">
+	<div class="about">
+		<h1>About Me</h1>
+		<div class="content">
+			<img src="https://via.placeholder.com/200" alt="Your Name" class="profile-pic" />
+			<div class="bio">
+				<p>
+					Hello! I'm a passionate developer with expertise in web development and software engineering.
+					I love building things that live on the internet and solving complex problems.
+				</p>
+				<h2>Skills</h2>
+				<ul class="skills">
+					<li>JavaScript/TypeScript</li>
+					<li>React</li>
+					<li>Node.js</li>
+					<li>Python</li>
+					<li>AWS</li>
+					<li>Docker</li>
+				</ul>
+				<h2>Experience</h2>
+				<div class="experience">
+					<div class="job">
+						<h3>Senior Developer - Company Name</h3>
+						<p class="date">2020 - Present</p>
+						<p>Description of your role and achievements</p>
+					</div>
+					<div class="job">
+						<h3>Full Stack Developer - Previous Company</h3>
+						<p class="date">2018 - 2020</p>
+						<p>Description of your role and achievements</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</Layout>
+
+<style>
+	.about {
+		max-width: 800px;
+		margin: 0 auto;
+	}
+	h1 {
+		font-size: 2.5rem;
+		margin-bottom: 2rem;
+	}
+	.content {
+		display: grid;
+		gap: 2rem;
+	}
+	.profile-pic {
+		width: 200px;
+		height: 200px;
+		border-radius: 50%;
+		margin: 0 auto;
+	}
+	.bio {
+		font-size: 1.1rem;
+		line-height: 1.6;
+	}
+	.skills {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1rem;
+		padding: 0;
+		list-style: none;
+	}
+	.skills li {
+		background: rgb(var(--accent-light));
+		color: rgb(var(--accent-dark));
+		padding: 0.5rem 1rem;
+		border-radius: 20px;
+		font-size: 0.9rem;
+	}
+	.experience {
+		margin-top: 2rem;
+	}
+	.job {
+		margin-bottom: 1.5rem;
+	}
+	.job h3 {
+		margin: 0;
+		color: rgb(var(--accent));
+	}
+	.job .date {
+		color: #666;
+		font-size: 0.9rem;
+		margin: 0.25rem 0;
+	}
+</style>
